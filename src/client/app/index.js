@@ -1,11 +1,13 @@
 import { AppContainer } from 'react-hot-loader'; //eslint-disable-line
-import { applyMiddleware, compose, createStore } from 'redux';//eslint-disable-line
-import { createBrowserHistory } from 'history';//eslint-disable-line
-import { routerMiddleware, connectRouter } from 'connected-react-router/immutable';//eslint-disable-line
-import { Provider } from 'react-redux';//eslint-disable-line
-import Immutable from 'immutable';//eslint-disable-line
+import { applyMiddleware, compose, createStore } from 'redux';
+import { createBrowserHistory } from 'history';
+import { routerMiddleware, connectRouter } from 'connected-react-router/immutable';
+import { Provider } from 'react-redux';
+import Immutable from 'immutable';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import multi from 'redux-multi';
+import thunk from 'redux-thunk';
 import App from './App';
 import rootReducer from './reducers';
 
@@ -22,6 +24,8 @@ const store = createStore(
       routerMiddleware(history),
     ),
   ),
+  multi,
+  thunk
 );
 
 const render = () => {
@@ -34,6 +38,8 @@ const render = () => {
     document.getElementById('root')
   );
 };
+  //eslint-disable-next-line
+  window.__STORE__ = store;
 
 render();
 
@@ -46,6 +52,6 @@ if (module.hot) {
 
   // Reload reducers
   module.hot.accept('./reducers', () => {
-    store.replaceReducer(connectRouter(history)(rootReducer))
+    store.replaceReducer(connectRouter(history)(rootReducer));
   });
 }
