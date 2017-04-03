@@ -55,3 +55,5 @@ if (module.hot) {
     store.replaceReducer(connectRouter(history)(rootReducer));
   });
 }
+
+export default store;

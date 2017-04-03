@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-source-map',
   entry: [
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
@@ -17,7 +17,6 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?/,
-        // Don't use .babelrc in `yarn link`-ed dependency's directory and use in current direction instead
         loader: 'babel-loader?babelrc=false&extends=' + path.resolve(__dirname, '.babelrc')
       }
     ],

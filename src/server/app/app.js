@@ -4,7 +4,7 @@ const universalLoader = require('./universal');
 const app = express();
 
 // Serve static assets
-app.use(express.static('dist'));
+app.use(express.static('client'));
 
 app.use('/', universalLoader);
 
